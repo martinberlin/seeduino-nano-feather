@@ -1,2 +1,2 @@
 # seeduino-nano-feather
-Arduino demos for our Adapter boards for Seeed, Nano and Feather. Plug in displays and I2C modules with easy
+Software demos for our frustration-free adapter boards for Seeed Xiao, Arduino Nano and Feather PCBs. Plug in SPI and I2C displays and sensors with ease.
