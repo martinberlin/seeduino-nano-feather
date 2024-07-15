@@ -1,11 +1,10 @@
-### Hello World I2C display
+### GFX demo in I2C display
 
 ![Seeed hello world](/assets/hello_world_128x64.jpg)
 
+Additional comments when you open the file in Arduino:
 
-Demo of Readme showing repository C++ code:
-
-https://github.com/martinberlin/seeduino-nano-feather/blob/567336cadfc861244ce17b4706055aa7d41138c4/I2C/hello_world_128x64/hello_world_128x64.ino#L1-L9
+https://github.com/martinberlin/seeduino-nano-feather/blob/da156fee5a731e332afef6590a76d453d20394ab/I2C/oled-display/oled_gfx_demo/oled_gfx_demo.ino
 
 ## Requirements
 
