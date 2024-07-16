@@ -9,7 +9,7 @@ The objective of this example is to show an external RTC at work. Simply setting
 A more advanced version will save that flag to know the time is set in the Non Volatile Storage or NVS then it could be flashed only one time. 
 Provided you use an MCU with WiFi such as any Espressif MCU then you could test a more advanced example like you can see in the BB RTC repository.
 
-https://github.com/martinberlin/seeduino-nano-feather/blob/xx/I2C/DS3231-clock/DS3231-clock.ino#L1-L75
+https://github.com/martinberlin/seeduino-nano-feather/blob/eff36a25e09dc69897d800fc3e5310c319b8a73f/I2C/DS3231-clock/DS3231-clock.ino#L1-L74
 
 ## Requirements
 
