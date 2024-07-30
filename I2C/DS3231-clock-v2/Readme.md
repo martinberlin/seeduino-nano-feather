@@ -1,0 +1,27 @@
+### I2C Clock demo v2
+
+![Seeed I2C scan](/assets/DS3231-clock.jpg)
+
+The objective of this example is to show an external RTC at work. Simply setting time in setup() and defining a variable that will be used to set it only once:
+
+In this second version we changed the output to represent the date in "DD MonthName" format and also added a different representation of the seconds.
+But the challenge of this second version is that you update this into a clock that refreshes each 5 seconds using the least power as possible!
+The MCU should sleep in those 5 seconds, leaving the I2C display on, and wake up to fetch the new time from RTC.
+
+#define SET_TIME false --> Need to be set to true in the initial flash along with the right time. 
+
+A more advanced version will save that flag to know the time is set in the Non Volatile Storage or NVS then it could be flashed only one time. 
+Provided you use an MCU with WiFi such as any Espressif MCU then you could test a more advanced example like you can see in the BB RTC repository.
+
+https://github.com/martinberlin/seeduino-nano-feather/blob/eff36a25e09dc69897d800fc3e5310c319b8a73f/I2C/DS3231-clock/DS3231-clock.ino#L1-L74
+
+## Requirements
+
+Any compatible board with an I2C display.   
+
+For this example we used:   Seeed XIAO nRF52840 & Adafruit Feather nRF52832
+
+**Libraries:**  
+
+- OneBitDisplay ([Repository link](https://github.com/bitbank2/OneBitDisplay))
+- bb_rtc Latest version to handle RTC
