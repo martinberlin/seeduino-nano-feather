@@ -23,12 +23,12 @@ char * month[13] = {(char *)"", (char *)"Jan", (char *)"Feb", (char *)"March", (
 #define SLEEP_TIME 5        // Sleep time [sec]
 
 void printTime() {
-  obd.fillScreen(OBD_WHITE); // Clean display
+  
   char szDate[14];
   char szTemp[32];
   int color;
   rtc.getTime(&myTime); // Read the current time from the RTC into our time structure
-  sprintf(szTemp, "%02d:%02d:%02d", myTime.tm_hour, myTime.tm_min, myTime.tm_sec);
+  sprintf(szTemp, "%02d:%02d", myTime.tm_hour, myTime.tm_min);
   sprintf(szDate, "%02d %s", myTime.tm_mday, month[myTime.tm_mon]); //myTime.tm_year-100
   obd.setCursor(1, 15);
   obd.setFont(FONT_12x16);
@@ -71,6 +71,8 @@ void setup()
   obd.setFont(FONT_12x16);   // There are 5 font sizes built in to the library: 6x8, 8x8, 12x16, 16x16 and 16x32
   obd.println("Clock demo");   // On most Arduino targets, println and printf are supported
   obd.setRotation(180);
+  delay(400);
+  obd.fillScreen(OBD_WHITE); // Clean display
   wi->begin();        // join i2c bus (address optional for main)
 
   printTime();
