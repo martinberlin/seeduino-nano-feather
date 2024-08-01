@@ -67,7 +67,12 @@ void setup()
   rtc.setTime(&myTime);
   #endif
   obd.I2Cbegin(OLED_128x64); // initialize the Wire library on the default I2C pins for a SSD1306 128x64 OLED
+  // Contrast - set to medium to consume less:
+  obd.writeCommand(0x81);
+  obd.writeCommand(100); // 10 -> 255 max
+  
   obd.fillScreen(OBD_WHITE); // The colors are WHITE for all 0's and BLACK for all 1's. This references mono LCDs and e-paper. OLEDs display inverted colors. 
+  // Lower brightness?
   obd.setFont(FONT_12x16);   // There are 5 font sizes built in to the library: 6x8, 8x8, 12x16, 16x16 and 16x32
   obd.println("Clock demo");   // On most Arduino targets, println and printf are supported
   obd.setRotation(180);
@@ -80,19 +85,13 @@ void setup()
   Serial.end();   // Shut this down to limit power
   sd_power_mode_set(NRF_POWER_MODE_LOWPWR);
   sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);    // This saves power
-  waitForEvent();
-  sd_power_system_off();
 }
 
 void loop()
 {
   
   digitalWrite(LED_RED, LOW);
-    	// Enter System ON sleep mode
-		__WFI();
-		// Make sure any pending events are cleared
-		__SEV();
-		__WFI();
+  sd_power_system_off();
 		// For more information on the WFE - SEV - WFE sequence, please refer to the following Devzone article:
 		// https://devzone.nordicsemi.com/index.php/how-do-you-put-the-nrf51822-chip-to-sleep#reply-1589
 }
