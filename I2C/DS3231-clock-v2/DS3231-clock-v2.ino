@@ -78,11 +78,9 @@ void setup()
   obd.setRotation(180);
   delay(400);
   obd.fillScreen(OBD_WHITE); // Clean display
-  wi->begin();        // join i2c bus (address optional for main)
-
+  Serial.end();
   printTime();
 
-  Serial.end();   // Shut this down to limit power
   sd_power_mode_set(NRF_POWER_MODE_LOWPWR);
   sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);    // This saves power
 }
@@ -91,7 +89,11 @@ void loop()
 {
   
   digitalWrite(LED_RED, LOW);
-  sd_power_system_off();
+  // Enter System ON sleep mode
+  __WFI();
+  // Make sure any pending events are cleared
+  __SEV();
+  __WFI();
 		// For more information on the WFE - SEV - WFE sequence, please refer to the following Devzone article:
 		// https://devzone.nordicsemi.com/index.php/how-do-you-put-the-nrf51822-chip-to-sleep#reply-1589
 }
