@@ -42,12 +42,11 @@ void printTime() {
     color = OBD_BLACK;
   }
   obd.drawLine(0, 30, myTime.tm_sec*2, 30, color);
-  obd.drawLine(0, 31, myTime.tm_sec*2, 31, color);
+  //obd.drawLine(0, 31, myTime.tm_sec*2, 31, color);
   
-  delay(100); // But you could also deepsleep 5 seconds or whatever since the RTC IC holds the time for you
   obd.drawLine(0, 30, 128, 30, OBD_WHITE);
-  obd.drawLine(0, 31, 128, 31, OBD_WHITE);
-  obd.displayLines(30,2);
+  //obd.drawLine(0, 31, 128, 31, OBD_WHITE);
+  obd.displayLines(30,1);
 }
 void setup()
 {
@@ -69,7 +68,7 @@ void setup()
   obd.I2Cbegin(OLED_128x64); // initialize the Wire library on the default I2C pins for a SSD1306 128x64 OLED
   // Contrast - set to medium to consume less:
   obd.writeCommand(0x81);
-  obd.writeCommand(100); // 10 -> 255 max
+  obd.writeCommand(80); // 10 -> 255 max
   
   obd.fillScreen(OBD_WHITE); // The colors are WHITE for all 0's and BLACK for all 1's. This references mono LCDs and e-paper. OLEDs display inverted colors. 
   // Lower brightness?
@@ -94,6 +93,7 @@ void loop()
   // Make sure any pending events are cleared
   __SEV();
   __WFI();
+  sd_power_system_off();
 		// For more information on the WFE - SEV - WFE sequence, please refer to the following Devzone article:
 		// https://devzone.nordicsemi.com/index.php/how-do-you-put-the-nrf51822-chip-to-sleep#reply-1589
 }
