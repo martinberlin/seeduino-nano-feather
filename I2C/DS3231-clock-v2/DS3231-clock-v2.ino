@@ -88,14 +88,19 @@ void loop()
 {
   
   digitalWrite(LED_RED, LOW);
-  // Enter System ON sleep mode
-  __WFI();
-  // Make sure any pending events are cleared
-  __SEV();
-  __WFI();
-  sd_power_system_off();
+  #ifdef ARDUINO_ARCH_ESP32 // ESP32 needs to use light sleep to save power
+    esp_sleep_enable_timer_wakeup(SLEEP_TIME * 1000000L);
+    esp_light_sleep_start();
+  #else
+    // Enter System ON sleep mode
+    __WFI();
+    // Make sure any pending events are cleared
+    __SEV();
+    __WFI();
+    sd_power_system_off();
 		// For more information on the WFE - SEV - WFE sequence, please refer to the following Devzone article:
 		// https://devzone.nordicsemi.com/index.php/how-do-you-put-the-nrf51822-chip-to-sleep#reply-1589
+  #endif
 }
 
 
